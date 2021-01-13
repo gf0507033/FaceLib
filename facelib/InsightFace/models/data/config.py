@@ -1,3 +1,5 @@
+import os
+
 from easydict import EasyDict as edict
 from pathlib import Path
 import torch
@@ -17,7 +19,7 @@ def get_config(training=True):
     conf.net_depth = 50
     conf.drop_ratio = 0.6
     conf.net_mode = 'ir_se'  # or 'ir'
-    conf.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    conf.device = torch.device(os.getenv("INSIGHTFACEDEVICE", "cuda:0" if torch.cuda.is_available() else "cpu"))
     conf.data_mode = 'emore'
     conf.vgg_folder = conf.data_path / 'faces_vgg_112x112'
     conf.ms1m_folder = conf.data_path / 'faces_ms1m_112x112'
