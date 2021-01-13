@@ -41,7 +41,7 @@ class FaceDetector:
             exit('from FaceDetector Exit: model not support \n just(mobilenet, resnet, slim, rfb)')
 
         # setting for model
-        model.load_state_dict(torch.load(weight_path))
+        model.load_state_dict(torch.load(weight_path, map_location='cpu'))
         model.to(device).eval()
         self.model = model
         self.device = device
