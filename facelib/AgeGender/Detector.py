@@ -25,7 +25,7 @@ class AgeGenderEstimator:
         else:
             exit('from AgeGender Detector: model dose not support just(tiny, full)')
 
-        model.load_state_dict(torch.load(weight_path))
+        model.load_state_dict(torch.load(weight_path, map_location='cpu'))
         model.to(device).eval()
         self.model = model
         self.device = device
